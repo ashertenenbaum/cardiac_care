@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/STLLoader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/OrbitControls.min.js"></script>
+    <script>
+        // Initialize Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('container').appendChild(renderer.domElement);
+
+        // Add mouse controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        // Load and add 3D model to the scene
+        const loader = new THREE.STLLoader();
+        loader.load('anatomical-heart.stl', function (geometry) {
+            const material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+        });
+
+        // Set camera position
+        camera.position.z = 5;
+
+        // Render loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+            controls.update(); // Update controls
+        }
+        animate();
+    </script>
+</body>
+
+</html>
