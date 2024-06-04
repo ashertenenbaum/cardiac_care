@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model Viewer</title>
+    <title>Cardiac Care Project</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             width: 100%;
             height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .description {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .model-viewer {
+            width: 100%;
+            height: 80%;
+            border: none;
+            flex-grow: 1;
         }
     </style>
 </head>
 <body>
-    <iframe width="100%" height="100%" src="https://sketchfab.com/models/a96c431edae446a9b0e47c3d44b334d7/embed"></iframe>
+    <div class="description">
+        <h1></h1>
+        <p>
+            This project was to test which 3D printer filament is most effective to print a cardiac muscle. I have embedded the model we used to test different filaments on.
+        </p>
+    </div>
+    <iframe class="model-viewer" src="https://sketchfab.com/models/a96c431edae446a9b0e47c3d44b334d7/embed"></iframe>
 </body>
 </html>
